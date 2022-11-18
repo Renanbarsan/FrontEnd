@@ -1,0 +1,68 @@
+.center{
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+#menu{
+    display: flex;
+}
+
+#menu li{
+    display:inline;
+    padding: 16px;
+}
+
+#menu li a{
+    text-decoration:linen;
+    color:aliceblue;
+    font-size: 20px;
+}
+
+#menu li a:hover{
+    font-size: 40px;
+    color:azure;
+}
+
+.br-50{
+    color: red;
+    border: 50px;
+}
+
+.body{
+    background-image: url(https://th.bing.com/th/id/R.6f98319dd92540ea7c3d92ab6e8546c1?rik=EF%2fLM%2bccQJVxRA&pid=ImgRaw&r=0);
+    background-position: left;
+    background-size:auto;
+}
+
+.p{
+    color: whitesmoke;
+    font-size: large;
+    font-variant:initial;
+    font-style:normal;
+}
+
+.p1{
+    color: aliceblue;
+    font-size:50px;
+}
+
+.imagem{
+    justify-content: space-around;
+}
+
+.imagem1{
+    width: 30px;
+    height: 30px;
+}
+.imagem2{
+    display: flex;
+    width: 30px;
+    height: 30px;
+    margin-left: 70%;
+
+}
