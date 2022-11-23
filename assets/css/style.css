@@ -1,0 +1,37 @@
+#menu{
+    display: flex;
+}
+
+.p{
+    color: rgb(245, 245, 245);
+    font-size: large;
+    font-variant:initial;
+    font-style:normal;
+}
+
+.fundo{
+    background-color: rgb(26, 61, 55);
+
+}
+
+.center{
+    text-align: center;
+}
+
+.p1{
+    color: aliceblue;
+    font-size:50px;
+}
+
+.imagem1{
+    width: 30px;
+    height: 30px;
+}
+
+.imagem2{
+    display: flex;
+    width: 30px;
+    height: 30px;
+    margin-left:30%;
+
+}
