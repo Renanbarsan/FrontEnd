@@ -1,0 +1,16 @@
+.caixa{
+    background-color: #3f5185;
+    }
+    .titulo{
+        color: white !important;
+        font-weight: bold !important;
+    }
+    
+    .botao{
+        border-color: white !important;
+        background-color:  #3f5185;
+        color: white !important;
+    }
+    .post{
+        background-color: white ;
+    }
