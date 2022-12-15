@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import {Typography, Button, Card, CardActions, CardContent } from "@material-ui/core";
+import {Card, CardActions, CardContent, Button, Typography} from '@material-ui/core';
 import {Box} from '@mui/material';
-import './DeletarPostagem.css';
+import './DeletarTema.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import Postagem from '../../../models/Postagem';
 import { buscaId, deleteId } from '../../../services/Service';
+import Tema from '../../../models/Tema';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
 import { toast } from 'react-toastify';
 
-function DeletarPostagem() {
+function DeletarTema() {
     let navigate = useNavigate();
     const { id } = useParams<{id: string}>();
     const token = useSelector<TokenState, TokenState["tokens"]>(
       (state) => state.tokens
     );
-    const [post, setPosts] = useState<Postagem>()
+    const [tema, setTema] = useState<Tema>()
 
     useEffect(() => {
         if (token == "") {
@@ -28,8 +28,8 @@ function DeletarPostagem() {
             draggable: false,
             theme: "colored",
             progress: undefined,
-        });
-        navigate("/login")
+            });
+            navigate("/login")
     
         }
     }, [token])
@@ -41,7 +41,7 @@ function DeletarPostagem() {
     }, [id])
 
     async function findById(id: string) {
-        buscaId(`/postagens/${id}`, setPosts, {
+        buscaId(`/tema/${id}`, setTema, {
             headers: {
               'Authorization': token
             }
@@ -49,13 +49,13 @@ function DeletarPostagem() {
         }
 
         function sim() {
-          navigate('/posts')
-            deleteId(`/postagens/${id}`, {
+          navigate('/temas')
+            deleteId(`/tema/${id}`, {
               headers: {
                 'Authorization': token
               }
             });
-            toast.success('Postagem deletada com sucesso', {
+            toast.success('Tema deletado com sucesso', {
               position: "top-right",
               autoClose: 2000,
               hideProgressBar: false,
@@ -64,38 +64,38 @@ function DeletarPostagem() {
               draggable: false,
               theme: "colored",
               progress: undefined,
-          });
+              });
           }
         
           function nao() {
-            navigate('/posts')
+            navigate('/temas')
           }
+          
   return (
     <>
       <Box m={2}>
-        <Card variant="outlined" >
+        <Card variant="outlined">
           <CardContent>
             <Box justifyContent="center">
               <Typography color="textSecondary" gutterBottom>
-                Deseja deletar a Postagem:
+                Deseja deletar o Tema:
               </Typography>
-              <Typography color="textSecondary" >
-              {post?.titulo}
+              <Typography color="textSecondary">
+                {tema?.descricao}
               </Typography>
             </Box>
-
           </CardContent>
           <CardActions>
             <Box display="flex" justifyContent="start" ml={1.0} mb={2} >
               <Box mx={2}>
-              <Button onClick={sim} variant="contained" className="marginLeft" size='large' color="primary">
-                Sim
-              </Button>
+                <Button onClick={sim} variant="contained" className="marginLeft" size='large' color="primary">
+                  Sim
+                </Button>
               </Box>
-              <Box>
-              <Button  onClick={nao} variant="contained" size='large' color="secondary">
-                Não
-              </Button>
+              <Box mx={2}>
+                <Button  onClick={nao} variant="contained" size='large' color="secondary">
+                  Não
+                </Button>
               </Box>
             </Box>
           </CardActions>
@@ -104,4 +104,4 @@ function DeletarPostagem() {
     </>
   );
 }
-export default DeletarPostagem;
+export default DeletarTema;

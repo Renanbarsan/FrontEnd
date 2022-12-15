@@ -1,16 +1,19 @@
 import { Button, Grid, TextField, Typography } from '@material-ui/core';
 import { Box } from '@mui/material';
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate, } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
+import { toast } from 'react-toastify';
 import UserLogin from '../../models/UserLogin';
 import { api, login } from '../../services/Service';
-import './Login.css'
+import { addToken } from '../../store/tokens/actions';
+import './Login.css';
 
 function Login() {
 
     let navigate = useNavigate();
-    const [token, setToken] = useLocalStorage('token');
+    const dispatch = useDispatch();
+    const [token, setToken] = useState('');
     const [userLogin, setUserLogin] = useState<UserLogin>(
         {
             id: 0,
@@ -31,6 +34,7 @@ function Login() {
 
     useEffect(() => {
         if (token != '') {
+            dispatch(addToken(token));
             navigate('/home')
         }
     }, [token])
@@ -43,19 +47,36 @@ function Login() {
             // setToken(resposta.data.token)
 
             await login(`auth/logar`, userLogin, setToken)
-
-            alert('Usuário logado com sucesso')
-        } catch(error) {
-            alert('Dados do usuário inconsistentes, Erro ao logar!');
+            toast.success('Usuário logado com sucesso!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+                });
+        }catch(error){
+            toast.error('Dados do usuário inconsistentes. Erro ao logar!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+                });
         }
     }
 
     return (
-        <Grid container direction='row' justifyContent='center' alignItems='center'>
+        <Grid container direction='row' justifyContent='center' alignItems='center' className='caixa'>
             <Grid alignItems='center' xs={6}>
                 <Box padding={20}>
                     <form onSubmit={onSubmit}>
-                        <Typography variant='h3' gutterBottom color='textPrimary' component='h3' align='center'>Entrar</Typography>
+                        <Typography variant='h3' gutterBottom color='textPrimary' component='h3' align='center'>ENTRAR</Typography>
                         <TextField id='usuario' value={userLogin.usuario} onChange={(e: ChangeEvent<HTMLInputElement>) => updateModel(e)} label='usuário' variant='outlined' name='usuario' margin='normal' fullWidth />
                         <TextField id='senha' value={userLogin.senha} onChange={(e: ChangeEvent<HTMLInputElement>) => updateModel(e)} label='senha' variant='outlined' name='senha' margin='normal' type='password' fullWidth />
                         <Box marginTop={2} textAlign='center'>

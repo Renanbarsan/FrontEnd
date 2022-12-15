@@ -6,3 +6,7 @@
 .text-decorator-none{
     text-decoration: none;
 }
+
+.caixa2{
+    background: linear-gradient(90deg, rgba(140,91,163,1) 0%, rgba(36,27,100,1) 35%, rgba(123,58,112,1) 100%);
+}

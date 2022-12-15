@@ -1,16 +1,30 @@
-.caixa{
-    background-color: #3f5185;
-    }
+.caixa1{
+    background: radial-gradient(circle, rgba(111,164,205,1) 0%, rgba(250,197,164,1) 35%, rgba(201,153,185,1) 100%);
+}
     .titulo{
-        color: white !important;
+        color:white   !important;
         font-weight: bold !important;
     }
     
     .botao{
-        border-color: white !important;
-        background-color:  #3f5185;
+        border-color: white!important;
+        background-color: white;
         color: white !important;
     }
     .post{
         background-color: white ;
+    }
+
+    .text-decorator-none{
+        text-decoration: none;
+    }
+
+
+    .bk{
+        background-image: url(img/astronauta2.jpg);
+        background-repeat: no-repeat;
+        width: 100vh;
+        min-height: 100vh;
+        background-size: cover;
+        background-position: center;
     }
